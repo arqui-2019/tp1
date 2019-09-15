@@ -17,7 +17,7 @@ function factorialize(num) {
 
 //Server
 app.get('/ping', (req, res) => {
-  res.status(200).send('pong');
+  res.status(200).send('node pong');
 });
 
 app.get('/timeout', (req, res) => {

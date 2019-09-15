@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/ping")
 def ping():
-    return "pong"
+    return "python pong"
 
 @app.route("/timeout")
 def timeout():
