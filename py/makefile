@@ -1,5 +1,5 @@
 install:
-	pip install gunicorn flask
+	docker build -t python_server .
 
 start:
-	gunicorn --workers=1 app:app
+	docker run -p 3000:8000 python_server
