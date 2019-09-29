@@ -1,22 +1,21 @@
 from flask import Flask
-from time import sleep
+from time import sleep, time
 app = Flask(__name__)
 
 @app.route("/ping")
 def ping():
-    return "python pong"
+    return "python - pong", 200
 
 @app.route("/timeout")
 def timeout():
     sleep(5)
-    return "Ok", 200
+    return "python - timeout", 200
     
 @app.route("/intensive")
 def intensive():
-    fact = 1
-    for i in range(1,90):
-        fact = fact * i
-    return "Ok", 200
+    startTime = time() # en segundos, flotante
+    while time() - startTime < 5.0: pass
+    return "python - intensive", 200
 
 if __name__ == "__main__":
     app.run()
