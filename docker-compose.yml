@@ -17,14 +17,20 @@ services:
         context: ./js
         dockerfile: Dockerfile
       image: node
-      container_name: node
+      networks:
+        default:
+          aliases:
+            - node
         
     gunicorn:
       build:
         context: ./py
         dockerfile: Dockerfile
       image: gunicorn
-      container_name: gunicorn
+      networks:
+        default:
+          aliases:
+            - gunicorn
 
     graphite:
         image: graphiteapp/graphite-statsd:1.1.5-12
