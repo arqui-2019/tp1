@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 
 services:
     nginx:
@@ -17,6 +17,7 @@ services:
         context: ./js
         dockerfile: Dockerfile
       image: node
+      scale: 3
       networks:
         default:
           aliases:
@@ -27,6 +28,7 @@ services:
         context: ./py
         dockerfile: Dockerfile
       image: gunicorn
+      command: ["--workers","6"]
       networks:
         default:
           aliases:
