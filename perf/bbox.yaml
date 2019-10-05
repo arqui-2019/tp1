@@ -1,0 +1,30 @@
+config:
+  environments:
+    bbox9090:
+      target: 'http://localhost:9090'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "bbox-9090"
+    bbox9091:
+      target: 'http://localhost:9091'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "bbox-9091"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Lineal
+      duration: 60
+      arrivalRate: 15
+    
+
+scenarios:
+  - name: root
+    flow:
+      - get:
+          url: '/'
