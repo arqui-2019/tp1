@@ -1,34 +1,34 @@
 config:
   environments:
     node:
-      target: 'http://localhost:5555/node/intensive'
+      target: 'http://localhost:5555/node'
       plugins:
         statsd:
           host: localhost
           port: 8125
           prefix: "artillery-node"
     gunicorn:
-      target: 'http://localhost:5555/gunicorn/intensive'
+      target: 'http://localhost:5555/python'
       plugins:
         statsd:
           host: localhost
           port: 8125
           prefix: "artillery-gunicorn"
 
-  pool: 100 # All HTTP requests from all virtual users will be sent over the same connections
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Ramp
+    - name: Ramp_1
       duration: 30
       arrivalRate: 5
-      rampTo: 200
+      rampTo: 30
     - name: Plain
-      duration: 300
-      arrivalRate: 200
+      duration: 90
+      arrivalRate: 30
     
 
 scenarios:
-  - name: Root (/)
+  - name: Ping (/ping)
     flow:
       - get:
-          url: '/'
+          url: '/ping'
