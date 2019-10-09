@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1570219603130,
+  "iteration": 1570470894676,
   "links": [],
   "panels": [
     {
@@ -242,6 +242,7 @@
         "Completed": "#7EB26D",
         "Errored": "#BF1B00",
         "Errors count": "#BF1B00",
+        "Pend (no Err) (MultiTest)": "semi-dark-blue",
         "Pending": "#447EBC",
         "Pending (sin Errored)": "semi-dark-blue",
         "Requests completed": "#7EB26D"
@@ -317,6 +318,12 @@
           "refCount": 0,
           "refId": "D",
           "target": "alias(removeBelowValue(diffSeries(transformNull(stats.gauges.$server.pendingRequests, 0), integral(sumSeries(transformNull(stats.gauges.$server.errors.*,0)))), 0), 'Pending (sin Errored)')",
+          "textEditor": true
+        },
+        {
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(removeBelowValue(diffSeries(transformNull(integral(diffSeries(stats.gauges.$server.scenariosCreated, stats.gauges.$server.scenariosCompleted)), 0), integral(sumSeries(transformNull(stats.gauges.$server.errors.*,0)))), 0), 'Pend (no Err) (MultiTest)')",
           "textEditor": true
         }
       ],
@@ -440,7 +447,8 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "alias(asPercent(stats.gauges.cadvisor.$container.memory_working_set, 6442450944), 'Memory')"
+          "target": "alias(asPercent(stats.gauges.cadvisor.$container.memory_working_set, 6442450944), 'Memory')",
+          "textEditor": false
         }
       ],
       "thresholds": [],
@@ -485,7 +493,7 @@
       }
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 19,
   "style": "dark",
   "tags": [],
@@ -494,6 +502,7 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "artillery-node",
           "value": "artillery-node"
         },
@@ -512,9 +521,19 @@
             "selected": false,
             "text": "artillery-gunicorn",
             "value": "artillery-gunicorn"
+          },
+          {
+            "selected": false,
+            "text": "bbox-9090",
+            "value": "bbox-9090"
+          },
+          {
+            "selected": false,
+            "text": "bbox-9091",
+            "value": "bbox-9091"
           }
         ],
-        "query": "artillery-node, artillery-gunicorn",
+        "query": "artillery-node, artillery-gunicorn, bbox-9090, bbox-9091",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -570,17 +589,22 @@
             "selected": false,
             "text": "tp1_nginx_1",
             "value": "tp1_nginx_1"
+          },
+          {
+            "selected": false,
+            "text": "tp1_bbox_1",
+            "value": "tp1_bbox_1"
           }
         ],
-        "query": "tp1_node_1, tp1_node_2, tp1_node_3, tp1_cadvisor_1, tp1_grafana_1, tp1_graphite_1, tp1_gunicorn_1, tp1_nginx_1",
+        "query": "tp1_node_1, tp1_node_2, tp1_node_3, tp1_cadvisor_1, tp1_grafana_1, tp1_graphite_1, tp1_gunicorn_1, tp1_nginx_1, tp1_bbox_1",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-15m",
-    "to": "now"
+    "from": "2019-10-07T19:22:40.405Z",
+    "to": "2019-10-07T19:30:28.531Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -610,5 +634,5 @@
   "timezone": "",
   "title": "Custom Dashboard",
   "uid": "A191rh2Zk",
-  "version": 2
+  "version": 5
 }
